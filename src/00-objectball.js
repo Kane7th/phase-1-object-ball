@@ -187,10 +187,6 @@ function playerStats(name) {
   return "Player not recognised!";
 }
 
-console.log(playerStats("Alan Anderson"));
-console.log(playerStats("Jeff Adrien"));
-console.log(playerStats("Thierry Henry"));
-
 // -----------------------------------------------------------------------------------
 
 function bigShoeRebounds(name) {
@@ -198,16 +194,16 @@ function bigShoeRebounds(name) {
   let biggestShoeSize = 0;
   let playerRebounds = 0;
 
-  for (let name in shoeRebounds.home.players) {
-    let playersShoe = shoeRebounds.home.players[name];
+  for (let player in shoeRebounds.home.players) {
+    let playersShoe = shoeRebounds.home.players[player];
     if (playersShoe.shoe > biggestShoeSize) {
       biggestShoeSize = playersShoe.shoe;
       playerRebounds = playersShoe.rebounds;
     }
   }
 
-  for (let name in shoeRebounds.away.players) {
-    let playersShoe = shoeRebounds.away.players[name];
+  for (let player in shoeRebounds.away.players) {
+    let playersShoe = shoeRebounds.away.players[player];
     if (playersShoe.shoe > biggestShoeSize) {
       biggestShoeSize = playersShoe.shoe;
       playerRebounds = playersShoe.rebounds;
@@ -217,33 +213,99 @@ function bigShoeRebounds(name) {
   return playerRebounds;
 }
 
-console.log(bigShoeRebounds());
-
 // -----------------------------------------------------------------------------------
 
-function mostPointsScored(name) {
+function mostPointsScored() {
   let game = gameObject();
   let maxPoints = 0;
-  let topShooter = "";
+  let topScorer = "";
 
-  for (let name in game.home.players) {
-    let playerData = game.home.players[name];
+  for (let player in game.home.players) {
+    let playerData = game.home.players[player];
     if (playerData.points > maxPoints) {
       maxPoints = playerData.points;
-      topScorer = name;
+      topScorer = player;
     }
   }
 
-  for (let name in game.away.players) {
-    let playerData = game.away.players[name];
+  for (let player in game.away.players) {
+    let playerData = game.away.players[player];
     if (playerData.points > maxPoints) {
       maxPoints = playerData.points;
-      topScorer = name;
+      topScorer = player;
     }
   }
 
   return topScorer;
 }
 
+// -----------------------------------------------------------------------------------
 
-console.log(mostPointsScored());
+function winningTeam() {
+  let gameScore = gameObject();
+  let homePoints = 0;
+  let awayPoints = 0;
+
+  for (let player in gameScore.home.players) {
+    homePoints += gameScore.home.players[player].points;
+  }
+
+  for (let player in gameScore.away.players) {
+    awayPoints += gameScore.away.players[player].points;
+  }
+  if (homePoints > awayPoints) {
+    return `The NBA Finals Champions for 2025 are the ${gameScore.home.teamName}!`;
+  } else if (awayPoints > homePoints) {
+    return `The NBA Finals Champions for 2025 are the ${gameScore.away.teamName}!`;
+  } else {
+    return "It's a tie!";
+  }
+}
+
+// -----------------------------------------------------------------------------------
+
+function playerWithLongestName() {
+  let game = gameObject();
+  let longestName = "";
+
+  for (let team of [game.home, game.away]) {
+    for (let player in team.players) {
+      if (player.length > longestName.length) {
+        longestName = player;
+      }
+    }
+  }
+
+  return longestName;
+}
+console.log(playerWithLongestName());
+
+// -----------------------------------------------------------------------------------
+
+function doesLongNameStealATon() {
+  let game = gameObject();
+  let longestName = "";
+  let mostSteals = 0;
+  let topStealer = "";
+
+  for (let team of [game.home, game.away]) {
+    for (let player in team.players) {
+      if (player.length > longestName.length) {
+        longestName = player;
+      }
+    }
+  }
+
+  for (let team of [game.home, game.away]) {
+    for (let player in team.players) {
+      if (team.players[player].steals > mostSteals) {
+        mostSteals = team.players[player].steals;
+        topStealer = player;
+      }
+    }
+  }
+
+  return longestName === topStealer;
+}
+
+console.log(doesLongNameStealATon());
