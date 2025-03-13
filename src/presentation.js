@@ -123,7 +123,6 @@ function gameObject() {
 
 function numPointsScored(name) {
   return gameData.home.players[name]?.points || gameData.away.players[name]?.points || "Player not recognised!";
-  
 }
  
 console.log(numPointsScored("Brendan Haywood"));
@@ -140,3 +139,22 @@ function shoeSize(name) {
 console.log(shoeSize("Brendan Haywood"));
 console.log(shoeSize("Jason Terry"));
 console.log(shoeSize("Thierry Henry"));
+
+//--------------------------------------------------------------------------------------------------------------------
+
+
+function stealsMade(name) {
+    return gameData.home.players[name]?.steals || gameData.away.players[name]?.steals || "Player not recognised!";
+  }
+  
+  console.log(stealsMade("Brendan Haywood"));
+  console.log(stealsMade("Jason Terry"));
+  console.log(stealsMade("Thierry Henry"));
+//--------------------------------
+  function blocksMade(name) {
+    return gameData.home.players[name]?.blocks || gameData.away.players[name]?.blocks || "Player not recognised!";
+  }
+  
+  console.log(blocksMade("Brendan Haywood"));
+  console.log(blocksMade("Jason Terry"));
+  console.log(blocksMade("Thierry Henry"));

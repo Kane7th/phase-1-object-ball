@@ -120,11 +120,19 @@ function gameObject() {
 const gameData = gameObject();
 
 function numPointsScored(name) {
-  return gameData.home.players[name]?.points || gameData.away.players[name]?.points || "Player not recognised!";
+  return (
+    gameData.home.players[name]?.points ||
+    gameData.away.players[name]?.points ||
+    "Player not recognised!"
+  );
 }
 
 function shoeSize(name) {
-  return gameData.home.players[name]?.shoe || gameData.away.players[name]?.shoe || "Player not recognised!";
+  return (
+    gameData.home.players[name]?.shoe ||
+    gameData.away.players[name]?.shoe ||
+    "Player not recognised!"
+  );
 }
 
 function teamColors(teamName) {
@@ -140,11 +148,19 @@ function teamNames() {
 }
 
 function getPlayerNumber(name) {
-  return gameData.home.players[name]?.number || gameData.away.players[name]?.number || "Not this player!";
+  return (
+    gameData.home.players[name]?.number ||
+    gameData.away.players[name]?.number ||
+    "Not this player!"
+  );
 }
 
 function playerStats(name) {
-  return gameData.home.players[name] || gameData.away.players[name] || "Player not recognised!";
+  return (
+    gameData.home.players[name] ||
+    gameData.away.players[name] ||
+    "Player not recognised!"
+  );
 }
 
 function bigShoeRebounds() {
@@ -196,8 +212,13 @@ function winningTeam() {
 }
 
 function playerWithLongestName() {
-  return Object.keys({ ...gameData.home.players, ...gameData.away.players })
-    .reduce((longest, player) => (player.length > longest.length ? player : longest), "");
+  return Object.keys({
+    ...gameData.home.players,
+    ...gameData.away.players,
+  }).reduce(
+    (longest, player) => (player.length > longest.length ? player : longest),
+    ""
+  );
 }
 
 function doesLongNameStealATon() {
