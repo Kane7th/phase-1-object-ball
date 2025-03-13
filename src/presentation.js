@@ -123,7 +123,12 @@ function gameObject() {
 
 function numPointsScored(name) {
   return gameData.home.players[name]?.points || gameData.away.players[name]?.points || "Player not recognised!";
+  
 }
+ 
+console.log(numPointsScored("Brendan Haywood"));
+console.log(numPointsScored("Jason Terry"));
+console.log(shoeSize("Thierry Henry"));
 
 //--------------------------------------------------------------------------------------------------------------------
 
@@ -131,3 +136,7 @@ function numPointsScored(name) {
 function shoeSize(name) {
   return gameData.home.players[name]?.shoe || gameData.away.players[name]?.shoe || "Player not recognised!";
 }
+
+console.log(shoeSize("Brendan Haywood"));
+console.log(shoeSize("Jason Terry"));
+console.log(shoeSize("Thierry Henry"));
